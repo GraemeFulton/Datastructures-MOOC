@@ -143,10 +143,11 @@ public abstract class Document {
 		
 	    // TODO: Implement this method
 		double fleschScore = 206.835 
-							- 1.1015*(words/sentences)
-							- 84.6*(syllables/words);
+							- (1.015*(words/sentences))
+							- (84.6*(syllables/words));
 		
-		double score =  Math.round(fleschScore*100.0)/100.0;
+		double score = Math.round(fleschScore*100.0)/100.0;
+		
 	    return score;
 	}
 	
