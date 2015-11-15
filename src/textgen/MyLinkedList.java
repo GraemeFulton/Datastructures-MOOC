@@ -16,28 +16,31 @@ public class MyLinkedList<E> extends AbstractList<E> {
 
 	/** Create a new empty LinkedList */
 	public MyLinkedList() {
-		this.size = 0;
+		// TODO: Implement this method
+		size = 0;
+		head = new LLNode<E>(null); 
+		tail = new LLNode<E>(null);
 		
-		this.head = new LLNode<E>(null);
-		this.tail = new LLNode<E>(null);
-		
-		this.head.next = this.tail;
-		this.tail.prev = this.head;
+		head.next = tail;
+		tail.prev = head;
 	}
 
 	/**
 	 * Appends an element to the end of the list
 	 * @param element The element to add
 	 */
-	public boolean add(E element) {
-		insertNewNodeWithData(element, tail);
-		return true;
+	public boolean add(E element ) 
+	{
+		// TODO: Implement this method
+		return false;
 	}
 
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
-	public E get(int index) {
-		return getNode(index).data;
+	public E get(int index) 
+	{
+		// TODO: Implement this method.
+		//return E(index);
 	}
 
 	/**
@@ -45,18 +48,17 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * @param The index where the element should be added
 	 * @param element The element to add
 	 */
-	public void add(int index, E element) {
-		if (index == size) {
-			add(element);
-			return;
-		}
-		
-		insertNewNodeWithData(element, getNode(index));
+	public void add(int index, E element ) 
+	{
+		// TODO: Implement this method
 	}
 
+
 	/** Return the size of the list */
-	public int size() {
-		return size;
+	public int size() 
+	{
+		// TODO: Implement this method
+		return -1;
 	}
 
 	/** Remove a node at the specified index and return its data element.
@@ -65,14 +67,10 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * @throws IndexOutOfBoundsException If index is outside the bounds of the list
 	 * 
 	 */
-	public E remove(int index) {
-		LLNode<E> currentNode = getNode(index);
-		
-		currentNode.prev.next = currentNode.next;
-		currentNode.next.prev = currentNode.prev;
-		size--;
-		
-		return currentNode.data;
+	public E remove(int index) 
+	{
+		// TODO: Implement this method
+		return null;
 	}
 
 	/**
@@ -82,80 +80,34 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * @return The element that was replaced
 	 * @throws IndexOutOfBoundsException if the index is out of bounds.
 	 */
-	public E set(int index, E element) {
-		if (element == null) {
-			throw new NullPointerException("Element provided is null");
-		}
-		
-		LLNode<E> node = getNode(index);
-		E oldData = node.data;
-		node.data = element;
-		return oldData;
-	}
-	
-	public String toString() {
-		String result = "LinkedList content:\n";
-		LLNode<E> currentNode = head.next;
-		int i = 0;
-		while (currentNode.data != null) {
-			result = result + "index " + i + " / node content: " + currentNode + "\n";
-			i++;
-			currentNode = currentNode.next;
-		}
-		
-		return result;
-	}
-	
-	private void insertNewNodeWithData(E element, LLNode<E> nextNode) {
-		if (element == null) {
-			throw new NullPointerException("Element provided is null");
-		}
-		
-		LLNode<E> insertedNode = new LLNode<E>(element);
-		
-		insertedNode.prev = nextNode.prev;		
-		insertedNode.next = nextNode;			
-		nextNode.prev = insertedNode;			
-		insertedNode.prev.next = insertedNode;
-		
-		size++;
-	}
-	
-	private LLNode<E> getNode(int index) {
-		if (index < 0 || index >= size) {
-			throw new IndexOutOfBoundsException("index " + index + " is out of the bound");
-		}
-		
-		LLNode<E> currentNode = null;
-		if (index > size / 2) {
-			currentNode = tail.prev;
-			for (int i = size - 1; i > index; i--) {
-				currentNode = currentNode.prev;
-			}
-		} else {
-			currentNode = head.next;
-			for (int i = 0; i < index; i++) {
-				currentNode = currentNode.next;
-			}
-		}
-		
-		return currentNode;
-	}
+	public E set(int index, E element) 
+	{
+		// TODO: Implement this method
+		return null;
+	}   
 }
 
-class LLNode<E> {
+class LLNode<E> 
+{
 	LLNode<E> prev;
 	LLNode<E> next;
 	E data;
 
-	public LLNode(E e) {
+	// TODO: Add any other methods you think are useful here
+	// E.g. you might want to add another constructor
+	
+	public LLNode(E e) 
+	{
 		this.data = e;
 		this.prev = null;
 		this.next = null;
 	}
 	
-	public String toString() {
-		return "Node content :" + data.toString();
+	public LLNode(E e, LLNode<E> prevNode){
+		
+		this(e);
+		this.next = prevNode.next;
+		prevNode.next = this;
 	}
 
 }
